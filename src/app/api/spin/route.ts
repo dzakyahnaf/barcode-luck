@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { getSupabaseAdmin } from "@/lib/supabase";
-import { ipRateLimiter } from "@/lib/ratelimit";
+import { getIpRateLimiter } from "@/lib/ratelimit";
 import { generateUniqueCode, hashIdentifier, runRNG } from "@/lib/utils";
 
 export const dynamic = "force-dynamic";
@@ -25,7 +25,7 @@ export async function POST(req: NextRequest) {
       "unknown";
 
     // --- Rate limit by IP ---
-    const { success: ipAllowed } = await ipRateLimiter.limit(ip);
+    const { success: ipAllowed } = await getIpRateLimiter().limit(ip);
     if (!ipAllowed) {
       return NextResponse.json(
         { error: "Terlalu banyak percobaan. Coba lagi nanti." },
@@ -122,7 +122,10 @@ export async function POST(req: NextRequest) {
 
     return NextResponse.json({ won: false, redirectUrl }, { status: 200 });
   } catch (err) {
-    console.error("Spin error:", err);
+    console.error("Spin error:", err instanceof Error ? err.message : err);
+    console.error("Env check - SUPABASE_URL:", !!process.env.NEXT_PUBLIC_SUPABASE_URL);
+    console.error("Env check - SERVICE_KEY:", !!process.env.SUPABASE_SERVICE_ROLE_KEY);
+    console.error("Env check - UPSTASH_URL:", !!process.env.UPSTASH_REDIS_REST_URL);
     return NextResponse.json(
       { error: "Terjadi kesalahan server." },
       { status: 500 }
