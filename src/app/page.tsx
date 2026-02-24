@@ -66,7 +66,7 @@ export default function HomePage() {
         window.location.href = `/result?won=true&code=${data.code}`;
       } else {
         // Redirect to lose page first, then Instagram
-        window.location.href = `/result?won=false&redirect=${encodeURIComponent(data.redirectUrl || "https://instagram.com")}`;
+        window.location.href = `/result?won=false&redirect=${encodeURIComponent(data.redirectUrl || "https://instagram.com/rakkencoffee")}`;
       }
     } catch {
       setError("Koneksi gagal. Periksa internet dan coba lagi.");
@@ -215,7 +215,7 @@ function AlreadyPlayedState() {
         </p>
       </div>
       <a
-        href="https://instagram.com"
+        href="https://instagram.com/rakkencoffee"
         target="_blank"
         rel="noopener noreferrer"
         className="btn-primary text-sm px-6 py-3"

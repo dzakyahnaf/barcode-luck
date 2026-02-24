@@ -118,7 +118,7 @@ export async function POST(req: NextRequest) {
 
     // --- If loser: return redirect URL ---
     const redirectUrl =
-      process.env.INSTAGRAM_REDIRECT_URL || "https://instagram.com";
+      process.env.INSTAGRAM_REDIRECT_URL || "https://instagram.com/rakkencoffee";
 
     return NextResponse.json({ won: false, redirectUrl }, { status: 200 });
   } catch (err) {
