@@ -193,7 +193,7 @@ function ResultContent() {
 
             {/* Follow CTA */}
             <a
-              href={redirect ? decodeURIComponent(redirect) : "https://instagram.com"}
+              href={redirect ? decodeURIComponent(redirect) : "https://instagram.com/rakkencoffee"}
               target="_blank"
               rel="noopener noreferrer"
               className="btn-primary text-sm px-6 py-3"
