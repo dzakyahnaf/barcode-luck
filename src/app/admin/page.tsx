@@ -145,7 +145,8 @@ export default function AdminPage() {
   // === LOGIN SCREEN ===
   if (!authenticated) {
     return (
-      <main className="relative min-h-screen bg-[#080a0f] flex items-center justify-center px-4">
+      <main className="relative min-h-screen flex items-center justify-center px-4"
+        style={{ background: "linear-gradient(160deg, #0d0804 0%, #1a0e06 50%, #0f0905 100%)" }}>
         <div className="absolute inset-0 bg-dots opacity-40" />
         <div className="absolute inset-0 bg-radial-purple" />
         <div className="relative z-10 w-full max-w-sm animate-fade-in-up">
@@ -153,9 +154,9 @@ export default function AdminPage() {
             <div className="flex flex-col items-center gap-3 text-center">
               <div
                 className="w-14 h-14 rounded-xl flex items-center justify-center"
-                style={{ background: "rgba(139,92,246,0.15)", border: "1px solid rgba(139,92,246,0.3)" }}
+                style={{ background: "rgba(180,100,30,0.15)", border: "1px solid rgba(180,100,30,0.3)" }}
               >
-                <ShieldCheck size={28} className="text-purple-400" />
+                <ShieldCheck size={28} className="text-amber-400" />
               </div>
               <div>
                 <h1 className="text-xl font-bold text-white">Admin Dashboard</h1>
@@ -205,16 +206,17 @@ export default function AdminPage() {
   const totalPages = codesData ? Math.ceil(codesData.total / codesData.pageSize) : 1;
 
   return (
-    <main className="relative min-h-screen bg-[#080a0f] px-4 py-8">
+    <main className="relative min-h-screen px-4 py-8"
+      style={{ background: "linear-gradient(160deg, #0d0804 0%, #1a0e06 50%, #0f0905 100%)" }}>
       <div className="absolute inset-0 bg-dots opacity-30" />
-      <div className="absolute inset-0 bg-radial-purple opacity-60" />
+      <div className="absolute inset-0 bg-radial-coffee opacity-60" />
 
       <div className="relative z-10 max-w-4xl mx-auto flex flex-col gap-8">
         {/* Header */}
         <div className="flex items-center justify-between">
           <div>
             <h1 className="text-2xl font-extrabold text-white flex items-center gap-2">
-              <BarChart3 className="text-purple-400" size={24} />
+              <BarChart3 className="text-amber-400" size={24} />
               Admin Dashboard
             </h1>
             <p className="text-slate-400 text-sm mt-1">QR Code Instant Reward Campaign</p>
@@ -245,15 +247,15 @@ export default function AdminPage() {
               icon={Ticket}
               label="Total Menang"
               value={stats.totalWins.toLocaleString()}
-              colorClass="text-purple-400"
-              bgClass="bg-purple-500/10"
+              colorClass="text-amber-400"
+              bgClass="bg-amber-500/10"
             />
             <StatCard
               icon={CheckCircle2}
               label="Total Diklaim"
               value={stats.totalClaimed.toLocaleString()}
-              colorClass="text-green-400"
-              bgClass="bg-green-500/10"
+              colorClass="text-emerald-400"
+              bgClass="bg-emerald-500/10"
             />
             <StatCard
               icon={BarChart3}
@@ -269,7 +271,7 @@ export default function AdminPage() {
         <div className="glass-card overflow-hidden">
           <div className="px-5 py-4 border-b border-white/5 flex items-center justify-between">
             <h2 className="text-white font-semibold flex items-center gap-2">
-              <Ticket size={17} className="text-purple-400" />
+              <Ticket size={17} className="text-amber-400" />
               Kode Pemenang
               {codesData && (
                 <span
@@ -414,7 +416,7 @@ function ValidateCodeSection({ token }: { token: string }) {
   return (
     <div className="glass-card p-5 flex flex-col gap-4">
       <h2 className="text-white font-semibold flex items-center gap-2">
-        <ShieldCheck size={17} className="text-purple-400" />
+        <ShieldCheck size={17} className="text-amber-400" />
         Validasi Kode
       </h2>
       <div className="flex gap-2">

@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect, useRef } from "react";
-import { Smartphone, Sparkles, Gift, ShieldCheck, ChevronRight } from "lucide-react";
+import { Smartphone, Sparkles, Coffee, ShieldCheck, ChevronRight } from "lucide-react";
 
 const STORAGE_KEY = "qr_campaign_played";
 
@@ -58,14 +58,11 @@ export default function HomePage() {
         return;
       }
 
-      // Mark as played in localStorage
       localStorage.setItem(STORAGE_KEY, "true");
 
       if (data.won && data.code) {
-        // Redirect to win page
         window.location.href = `/result?won=true&code=${data.code}`;
       } else {
-        // Redirect to lose page first, then Instagram
         window.location.href = `/result?won=false&redirect=${encodeURIComponent(data.redirectUrl || "https://instagram.com/rakkencoffee")}`;
       }
     } catch {
@@ -80,42 +77,76 @@ export default function HomePage() {
   };
 
   return (
-    <main className="relative min-h-screen overflow-hidden bg-[#080a0f] flex flex-col items-center justify-center px-4 py-10">
+    <main className="relative min-h-screen overflow-hidden flex flex-col items-center justify-center px-4 py-10"
+      style={{ background: "linear-gradient(160deg, #0d0804 0%, #1a0e06 50%, #0f0905 100%)" }}>
+
       {/* Background layers */}
-      <div className="absolute inset-0 bg-dots opacity-40" />
-      <div className="absolute inset-0 bg-radial-purple" />
-      <div className="absolute top-0 -left-32 w-64 h-64 rounded-full bg-purple-600/10 blur-3xl" />
-      <div className="absolute bottom-0 -right-32 w-80 h-80 rounded-full bg-violet-500/10 blur-3xl" />
+      <div className="absolute inset-0 bg-dots opacity-50" />
+      <div className="absolute inset-0 bg-radial-coffee" />
+
+      {/* Decorative warm blobs */}
+      <div className="absolute top-0 -left-40 w-80 h-80 rounded-full blur-3xl"
+        style={{ background: "radial-gradient(circle, rgba(150,80,20,0.12), transparent)" }} />
+      <div className="absolute bottom-0 -right-40 w-96 h-96 rounded-full blur-3xl"
+        style={{ background: "radial-gradient(circle, rgba(180,100,30,0.1), transparent)" }} />
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] rounded-full blur-3xl opacity-20"
+        style={{ background: "radial-gradient(circle, rgba(100,50,10,0.3), transparent)" }} />
 
       {/* Content */}
       <div className="relative z-10 w-full max-w-md flex flex-col items-center gap-8 animate-fade-in-up">
 
-        {/* Hero icon + tagline */}
+        {/* Logo / Hero */}
         <div className="flex flex-col items-center gap-4 text-center">
-          <div
-            className="relative flex items-center justify-center w-24 h-24 rounded-2xl glow-purple animate-float"
-            style={{
-              background:
-                "linear-gradient(135deg, rgba(139,92,246,0.3), rgba(109,40,217,0.4))",
-              border: "1px solid rgba(139,92,246,0.4)",
-            }}
-          >
-            <Gift size={44} className="text-purple-300" />
+          {/* Coffee cup with steam */}
+          <div className="relative">
+            <div
+              className="relative flex items-center justify-center w-24 h-24 rounded-2xl glow-coffee animate-float"
+              style={{
+                background: "linear-gradient(135deg, rgba(180,100,30,0.35), rgba(100,50,10,0.5))",
+                border: "1px solid rgba(180,120,60,0.35)",
+              }}
+            >
+              <Coffee size={44} style={{ color: "#f0c87a" }} />
+            </div>
+            {/* Steam wisps */}
+            <div className="absolute -top-5 left-8 flex gap-2">
+              {[0, 0.4, 0.8].map((delay, i) => (
+                <div
+                  key={i}
+                  className="w-1 h-5 rounded-full animate-steam opacity-0"
+                  style={{
+                    background: "rgba(240, 200, 122, 0.4)",
+                    animationDelay: `${delay}s`,
+                    filter: "blur(1px)",
+                  }}
+                />
+              ))}
+            </div>
+            {/* Sparkle badge */}
             <span className="absolute -top-2 -right-2 flex h-5 w-5">
-              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-purple-400 opacity-75" />
-              <span className="relative inline-flex rounded-full h-5 w-5 bg-purple-500 items-center justify-center">
-                <Sparkles size={11} className="text-white" />
+              <span className="animate-ping absolute inline-flex h-full w-full rounded-full opacity-75"
+                style={{ background: "rgba(212, 168, 85, 0.7)" }} />
+              <span className="relative inline-flex rounded-full h-5 w-5 items-center justify-center"
+                style={{ background: "#c97c2e" }}>
+                <Sparkles size={11} style={{ color: "#fdf4e7" }} />
               </span>
             </span>
           </div>
 
           <div>
-            <h1 className="text-3xl font-extrabold text-white tracking-tight">
-              Scan &amp; <span className="text-purple-400 text-glow-purple">Menangkan</span>
+            <p className="text-xs font-semibold tracking-[0.25em] uppercase mb-2"
+              style={{ color: "#c97c2e" }}>
+              ☕ Rakken Coffee
+            </p>
+            <h1 className="text-3xl font-extrabold tracking-tight" style={{ color: "#fdf4e7" }}>
+              Scan &{" "}
+              <span className="text-glow-coffee" style={{ color: "#f0c87a" }}>
+                Menangkan
+              </span>
             </h1>
-            <p className="text-slate-400 mt-2 text-sm leading-relaxed max-w-xs">
-              Masukkan nomor WhatsApp kamu dan coba keberuntunganmu sekarang.
-              Siapa tahu kamu yang jadi pemenang hari ini! 🎁
+            <p className="mt-2 text-sm leading-relaxed max-w-xs" style={{ color: "#a07850" }}>
+              Masukkan nomor WhatsApp kamu dan coba keberuntunganmu.
+              Siapa tahu kamu pulang dengan hadiah spesial dari kami! ☕
             </p>
           </div>
         </div>
@@ -129,9 +160,10 @@ export default function HomePage() {
               <div className="flex flex-col gap-2">
                 <label
                   htmlFor="phone-input"
-                  className="text-sm font-medium text-slate-300 flex items-center gap-2"
+                  className="text-sm font-medium flex items-center gap-2"
+                  style={{ color: "#c4956a" }}
                 >
-                  <Smartphone size={15} className="text-purple-400" />
+                  <Smartphone size={15} style={{ color: "#c97c2e" }} />
                   Nomor WhatsApp
                 </label>
                 <input
@@ -153,7 +185,7 @@ export default function HomePage() {
                   autoFocus
                 />
                 {error && (
-                  <p className="text-red-400 text-xs animate-fade-in flex items-center gap-1">
+                  <p className="text-xs animate-fade-in flex items-center gap-1" style={{ color: "#e07070" }}>
                     <span>⚠</span> {error}
                   </p>
                 )}
@@ -167,12 +199,13 @@ export default function HomePage() {
               >
                 {isLoading ? (
                   <>
-                    <div className="spinner !w-5 !h-5 !border-2 !border-white/20 !border-t-white" />
+                    <div className="spinner w-5! h-5! border-2!"
+                      style={{ borderColor: "rgba(255,220,150,0.2)", borderTopColor: "#fdf4e7" }} />
                     <span>Memproses...</span>
                   </>
                 ) : (
                   <>
-                    <Sparkles size={18} />
+                    <Coffee size={18} />
                     <span>Coba Keberuntunganmu!</span>
                     <ChevronRight size={18} />
                   </>
@@ -183,13 +216,13 @@ export default function HomePage() {
         </div>
 
         {/* Trust badges */}
-        <div className="flex items-center gap-3 text-slate-500 text-xs">
-          <ShieldCheck size={14} className="text-green-500/70" />
+        <div className="flex items-center gap-3 text-xs" style={{ color: "#7a5c3a" }}>
+          <ShieldCheck size={14} style={{ color: "rgba(100,180,100,0.7)" }} />
           <span>Data kamu aman &amp; tidak disimpan secara publik</span>
         </div>
 
-        {/* Footer */}
-        <p className="text-slate-600 text-xs text-center">
+        {/* Footer note */}
+        <p className="text-xs text-center" style={{ color: "#5a3c20" }}>
           Scan QR Code di banner untuk berpartisipasi. Satu nomor, satu kesempatan.
         </p>
       </div>
@@ -202,16 +235,17 @@ function AlreadyPlayedState() {
     <div className="flex flex-col items-center gap-4 py-4 text-center animate-fade-in">
       <div
         className="w-16 h-16 rounded-2xl flex items-center justify-center text-3xl"
-        style={{ background: "rgba(245, 158, 11, 0.1)", border: "1px solid rgba(245,158,11,0.3)" }}
+        style={{ background: "rgba(212,168,85,0.1)", border: "1px solid rgba(212,168,85,0.3)" }}
       >
         ⏰
       </div>
       <div>
-        <h2 className="text-lg font-bold text-white">Sudah Dimainkan</h2>
-        <p className="text-slate-400 text-sm mt-1 leading-relaxed">
+        <h2 className="text-lg font-bold" style={{ color: "#fdf4e7" }}>Sudah Dimainkan</h2>
+        <p className="text-sm mt-1 leading-relaxed" style={{ color: "#a07850" }}>
           Nomor ini sudah pernah mengikuti undian.
           <br />
-          Satu nomor hanya bisa bermain <strong className="text-white">satu kali</strong>.
+          Satu nomor hanya bisa bermain{" "}
+          <strong style={{ color: "#fdf4e7" }}>satu kali</strong>.
         </p>
       </div>
       <a
