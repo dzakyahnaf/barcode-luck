@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect, useRef } from "react";
-import { Smartphone, Sparkles, Coffee, ShieldCheck, ChevronRight } from "lucide-react";
+import { Smartphone, Sparkles, Coffee, ShieldCheck, ChevronRight, Instagram } from "lucide-react";
 
 const STORAGE_KEY = "qr_campaign_played";
 
@@ -20,10 +20,6 @@ export default function HomePage() {
   const [alreadyPlayed, setAlreadyPlayed] = useState(false);
   const inputRef = useRef<HTMLInputElement>(null);
 
-  useEffect(() => {
-    const played = localStorage.getItem(STORAGE_KEY);
-    if (played) setAlreadyPlayed(true);
-  }, []);
 
   const validatePhone = (p: string) => {
     const cleaned = p.replace(/\D/g, "");
@@ -50,7 +46,6 @@ export default function HomePage() {
 
       if (!res.ok) {
         if (data.alreadyPlayed) {
-          localStorage.setItem(STORAGE_KEY, "true");
           setAlreadyPlayed(true);
           return;
         }
@@ -58,7 +53,6 @@ export default function HomePage() {
         return;
       }
 
-      localStorage.setItem(STORAGE_KEY, "true");
 
       if (data.won && data.code) {
         window.location.href = `/result?won=true&code=${data.code}`;
@@ -78,19 +72,21 @@ export default function HomePage() {
 
   return (
     <main className="relative min-h-screen overflow-hidden flex flex-col items-center justify-center px-4 py-10"
-      style={{ background: "linear-gradient(160deg, #0d0804 0%, #1a0e06 50%, #0f0905 100%)" }}>
+      style={{ background: "linear-gradient(180deg, #6b0a10 0%, #8F0D14 35%, #B5121B 60%, #cc1a24 100%)" }}>
 
       {/* Background layers */}
-      <div className="absolute inset-0 bg-dots opacity-50" />
-      <div className="absolute inset-0 bg-radial-coffee" />
+      <div className="absolute inset-0 bg-dots opacity-40" />
+      <div className="absolute inset-0 bg-radial-red" />
 
-      {/* Decorative warm blobs */}
-      <div className="absolute top-0 -left-40 w-80 h-80 rounded-full blur-3xl"
-        style={{ background: "radial-gradient(circle, rgba(150,80,20,0.12), transparent)" }} />
-      <div className="absolute bottom-0 -right-40 w-96 h-96 rounded-full blur-3xl"
-        style={{ background: "radial-gradient(circle, rgba(180,100,30,0.1), transparent)" }} />
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] rounded-full blur-3xl opacity-20"
-        style={{ background: "radial-gradient(circle, rgba(100,50,10,0.3), transparent)" }} />
+      {/* Decorative blobs */}
+      <div className="absolute top-0 left-0 w-full h-60"
+        style={{ background: "linear-gradient(180deg, rgba(0,0,0,0.3), transparent)" }} />
+      <div className="absolute bottom-0 left-0 w-full h-60"
+        style={{ background: "linear-gradient(0deg, rgba(0,0,0,0.2), transparent)" }} />
+      <div className="absolute top-1/3 -left-32 w-80 h-80 rounded-full blur-3xl"
+        style={{ background: "radial-gradient(circle, rgba(204,26,36,0.4), transparent)" }} />
+      <div className="absolute bottom-1/4 -right-32 w-96 h-96 rounded-full blur-3xl"
+        style={{ background: "radial-gradient(circle, rgba(181,18,27,0.35), transparent)" }} />
 
       {/* Content */}
       <div className="relative z-10 w-full max-w-md flex flex-col items-center gap-8 animate-fade-in-up">
@@ -100,13 +96,14 @@ export default function HomePage() {
           {/* Coffee cup with steam */}
           <div className="relative">
             <div
-              className="relative flex items-center justify-center w-24 h-24 rounded-2xl glow-coffee animate-float"
+              className="relative flex items-center justify-center w-24 h-24 rounded-2xl animate-float"
               style={{
-                background: "linear-gradient(135deg, rgba(180,100,30,0.35), rgba(100,50,10,0.5))",
-                border: "1px solid rgba(180,120,60,0.35)",
+                background: "rgba(0,0,0,0.2)",
+                border: "1px solid rgba(255,255,255,0.2)",
+                boxShadow: "0 0 40px rgba(0,0,0,0.2)",
               }}
             >
-              <Coffee size={44} style={{ color: "#f0c87a" }} />
+              <Coffee size={44} style={{ color: "#F2F2F2" }} />
             </div>
             {/* Steam wisps */}
             <div className="absolute -top-5 left-8 flex gap-2">
@@ -115,7 +112,7 @@ export default function HomePage() {
                   key={i}
                   className="w-1 h-5 rounded-full animate-steam opacity-0"
                   style={{
-                    background: "rgba(240, 200, 122, 0.4)",
+                    background: "rgba(255, 255, 255, 0.35)",
                     animationDelay: `${delay}s`,
                     filter: "blur(1px)",
                   }}
@@ -125,26 +122,26 @@ export default function HomePage() {
             {/* Sparkle badge */}
             <span className="absolute -top-2 -right-2 flex h-5 w-5">
               <span className="animate-ping absolute inline-flex h-full w-full rounded-full opacity-75"
-                style={{ background: "rgba(212, 168, 85, 0.7)" }} />
+                style={{ background: "rgba(252, 211, 77, 0.7)" }} />
               <span className="relative inline-flex rounded-full h-5 w-5 items-center justify-center"
-                style={{ background: "#c97c2e" }}>
-                <Sparkles size={11} style={{ color: "#fdf4e7" }} />
+                style={{ background: "#fcd34d" }}>
+                <Sparkles size={11} style={{ color: "#8F0D14" }} />
               </span>
             </span>
           </div>
 
-          <div>
+          <div className="text-center">
             <p className="text-xs font-semibold tracking-[0.25em] uppercase mb-2"
-              style={{ color: "#c97c2e" }}>
+              style={{ color: "rgba(255,255,255,0.6)" }}>
               ☕ Rakken Coffee
             </p>
-            <h1 className="text-3xl font-extrabold tracking-tight" style={{ color: "#fdf4e7" }}>
-              Scan &{" "}
-              <span className="text-glow-coffee" style={{ color: "#f0c87a" }}>
-                Menangkan
+            <h1 className="text-3xl font-extrabold tracking-tight" style={{ color: "#F2F2F2" }}>
+              Welcome To{" "}
+              <span style={{ color: "#fde68a", textShadow: "0 0 30px rgba(252,211,77,0.4)" }}>
+                Rakken Coffee
               </span>
             </h1>
-            <p className="mt-2 text-sm leading-relaxed max-w-xs" style={{ color: "#a07850" }}>
+            <p className="mt-2 text-sm leading-relaxed" style={{ color: "rgba(255,255,255,0.65)" }}>
               Masukkan nomor WhatsApp kamu dan coba keberuntunganmu.
               Siapa tahu kamu pulang dengan hadiah spesial dari kami! ☕
             </p>
@@ -161,9 +158,9 @@ export default function HomePage() {
                 <label
                   htmlFor="phone-input"
                   className="text-sm font-medium flex items-center gap-2"
-                  style={{ color: "#c4956a" }}
+                  style={{ color: "rgba(255,255,255,0.7)" }}
                 >
-                  <Smartphone size={15} style={{ color: "#c97c2e" }} />
+                  <Smartphone size={15} style={{ color: "#F2F2F2" }} />
                   Nomor WhatsApp
                 </label>
                 <input
@@ -185,7 +182,7 @@ export default function HomePage() {
                   autoFocus
                 />
                 {error && (
-                  <p className="text-xs animate-fade-in flex items-center gap-1" style={{ color: "#e07070" }}>
+                  <p className="text-xs animate-fade-in flex items-center gap-1" style={{ color: "#fca5a5" }}>
                     <span>⚠</span> {error}
                   </p>
                 )}
@@ -199,8 +196,7 @@ export default function HomePage() {
               >
                 {isLoading ? (
                   <>
-                    <div className="spinner w-5! h-5! border-2!"
-                      style={{ borderColor: "rgba(255,220,150,0.2)", borderTopColor: "#fdf4e7" }} />
+                    <div className="spinner w-5! h-5! border-2!" />
                     <span>Memproses...</span>
                   </>
                 ) : (
@@ -211,18 +207,43 @@ export default function HomePage() {
                   </>
                 )}
               </button>
+
+              {/* Instagram CTA */}
+              <a
+                href="https://instagram.com/rakkencoffee"
+                target="_blank"
+                rel="noopener noreferrer"
+                style={{
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  gap: "0.625rem",
+                  width: "100%",
+                  padding: "1.1rem 1.5rem",
+                  borderRadius: "0.75rem",
+                  fontSize: "1rem",
+                  fontWeight: 700,
+                  background: "linear-gradient(135deg, #833ab4, #e1306c, #f56040)",
+                  color: "#fff",
+                  boxShadow: "0 4px 20px rgba(225,48,108,0.3)",
+                  textDecoration: "none",
+                }}
+              >
+                <Instagram size={20} />
+                <span>Follow @rakkencoffee</span>
+              </a>
             </>
           )}
         </div>
 
         {/* Trust badges */}
-        <div className="flex items-center gap-3 text-xs" style={{ color: "#7a5c3a" }}>
-          <ShieldCheck size={14} style={{ color: "rgba(100,180,100,0.7)" }} />
+        <div className="flex items-center gap-3 text-xs" style={{ color: "rgba(255,255,255,0.4)" }}>
+          <ShieldCheck size={14} style={{ color: "rgba(255,255,255,0.5)" }} />
           <span>Data kamu aman &amp; tidak disimpan secara publik</span>
         </div>
 
         {/* Footer note */}
-        <p className="text-xs text-center" style={{ color: "#5a3c20" }}>
+        <p className="text-xs text-center" style={{ color: "rgba(255,255,255,0.3)" }}>
           Scan QR Code di banner untuk berpartisipasi. Satu nomor, satu kesempatan.
         </p>
       </div>
@@ -235,17 +256,17 @@ function AlreadyPlayedState() {
     <div className="flex flex-col items-center gap-4 py-4 text-center animate-fade-in">
       <div
         className="w-16 h-16 rounded-2xl flex items-center justify-center text-3xl"
-        style={{ background: "rgba(212,168,85,0.1)", border: "1px solid rgba(212,168,85,0.3)" }}
+        style={{ background: "rgba(255,255,255,0.08)", border: "1px solid rgba(255,255,255,0.15)" }}
       >
         ⏰
       </div>
       <div>
-        <h2 className="text-lg font-bold" style={{ color: "#fdf4e7" }}>Sudah Dimainkan</h2>
-        <p className="text-sm mt-1 leading-relaxed" style={{ color: "#a07850" }}>
+        <h2 className="text-lg font-bold" style={{ color: "#F2F2F2" }}>Sudah Dimainkan</h2>
+        <p className="text-sm mt-1 leading-relaxed" style={{ color: "rgba(255,255,255,0.6)" }}>
           Nomor ini sudah pernah mengikuti undian.
           <br />
           Satu nomor hanya bisa bermain{" "}
-          <strong style={{ color: "#fdf4e7" }}>satu kali</strong>.
+          <strong style={{ color: "#F2F2F2" }}>satu kali</strong>.
         </p>
       </div>
       <a

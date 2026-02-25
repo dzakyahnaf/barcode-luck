@@ -146,7 +146,7 @@ export default function AdminPage() {
   if (!authenticated) {
     return (
       <main className="relative min-h-screen flex items-center justify-center px-4"
-        style={{ background: "linear-gradient(160deg, #0d0804 0%, #1a0e06 50%, #0f0905 100%)" }}>
+        style={{ background: "linear-gradient(160deg, #8F0D14 0%, #B5121B 50%, #A60F17 100%)" }}>
         <div className="absolute inset-0 bg-dots opacity-40" />
         <div className="absolute inset-0 bg-radial-purple" />
         <div className="relative z-10 w-full max-w-sm animate-fade-in-up">
@@ -154,7 +154,7 @@ export default function AdminPage() {
             <div className="flex flex-col items-center gap-3 text-center">
               <div
                 className="w-14 h-14 rounded-xl flex items-center justify-center"
-                style={{ background: "rgba(180,100,30,0.15)", border: "1px solid rgba(180,100,30,0.3)" }}
+                style={{ background: "rgba(255,255,255,0.1)", border: "1px solid rgba(255,255,255,0.2)" }}
               >
                 <ShieldCheck size={28} className="text-amber-400" />
               </div>
@@ -207,7 +207,7 @@ export default function AdminPage() {
 
   return (
     <main className="relative min-h-screen px-4 py-8"
-      style={{ background: "linear-gradient(160deg, #0d0804 0%, #1a0e06 50%, #0f0905 100%)" }}>
+      style={{ background: "linear-gradient(160deg, #8F0D14 0%, #B5121B 50%, #A60F17 100%)" }}>
       <div className="absolute inset-0 bg-dots opacity-30" />
       <div className="absolute inset-0 bg-radial-coffee opacity-60" />
 

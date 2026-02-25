@@ -1,6 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
 import { getSupabaseAdmin } from "@/lib/supabase";
-import { getIpRateLimiter } from "@/lib/ratelimit";
 import { generateUniqueCode, hashIdentifier, runRNG } from "@/lib/utils";
 
 export const dynamic = "force-dynamic";
@@ -24,14 +23,7 @@ export async function POST(req: NextRequest) {
       req.headers.get("x-real-ip") ||
       "unknown";
 
-    // --- Rate limit by IP ---
-    const { success: ipAllowed } = await getIpRateLimiter().limit(ip);
-    if (!ipAllowed) {
-      return NextResponse.json(
-        { error: "Terlalu banyak percobaan. Coba lagi nanti." },
-        { status: 429 }
-      );
-    }
+
 
     // --- Hash phone for privacy ---
     const identifier = await hashIdentifier(phone);

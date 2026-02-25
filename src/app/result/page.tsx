@@ -4,10 +4,9 @@ import { useSearchParams } from "next/navigation";
 import { useEffect, useState, Suspense } from "react";
 import { Copy, CheckCircle, Instagram, Trophy, XCircle, Coffee } from "lucide-react";
 
-// Confetti using warm coffee palette
 const CONFETTI_COLORS = [
-  "#d4a855", "#c97c2e", "#f0c87a", "#e8a84a",
-  "#a05c20", "#fde68a", "#b45309", "#f59e0b",
+  "#fcd34d", "#fde68a", "#F2F2F2", "#ffffff",
+  "#f59e0b", "#fbbf24", "#E6E6E6", "#d4a855",
 ];
 
 interface ConfettiPiece {
@@ -104,14 +103,14 @@ function ResultContent() {
         <ConfettiEffect />
         <main
           className="relative min-h-screen overflow-hidden flex flex-col items-center justify-center px-4 py-10"
-          style={{ background: "linear-gradient(160deg, #0d0804 0%, #1c1005 50%, #0f0a04 100%)" }}
+          style={{ background: "linear-gradient(160deg, #8F0D14 0%, #B5121B 50%, #A60F17 100%)" }}
         >
-          <div className="absolute inset-0 bg-dots opacity-50" />
+          <div className="absolute inset-0 bg-dots opacity-40" />
           <div className="absolute inset-0 bg-radial-gold" />
           <div className="absolute top-0 -right-40 w-80 h-80 rounded-full blur-3xl"
-            style={{ background: "radial-gradient(circle, rgba(212,168,85,0.12), transparent)" }} />
+            style={{ background: "radial-gradient(circle, rgba(0,0,0,0.12), transparent)" }} />
           <div className="absolute bottom-0 -left-40 w-96 h-96 rounded-full blur-3xl"
-            style={{ background: "radial-gradient(circle, rgba(180,100,30,0.1), transparent)" }} />
+            style={{ background: "radial-gradient(circle, rgba(0,0,0,0.1), transparent)" }} />
 
           <div className="relative z-10 w-full max-w-md flex flex-col items-center gap-8 animate-fade-in-up">
 
@@ -121,22 +120,22 @@ function ResultContent() {
                 <div
                   className="relative flex items-center justify-center w-28 h-28 rounded-3xl animate-pulse-glow animate-float"
                   style={{
-                    background: "linear-gradient(135deg, rgba(212,168,85,0.3), rgba(180,100,30,0.45))",
-                    border: "2px solid rgba(212,168,85,0.5)",
+                    background: "rgba(0,0,0,0.2)",
+                    border: "2px solid rgba(252,211,77,0.5)",
                   }}
                 >
-                  <Trophy size={52} style={{ color: "#f0c87a" }} />
+                  <Trophy size={52} style={{ color: "#fde68a" }} />
                 </div>
               </div>
 
               <div>
                 <p className="text-sm font-semibold tracking-widest uppercase mb-2"
-                  style={{ color: "#c97c2e" }}>
-                  ☕ Selamat! Kamu Menang!
+                  style={{ color: "rgba(255,255,255,0.7)" }}>
+                  🎉 Selamat! Kamu Menang!
                 </p>
-                <h1 className="text-3xl font-extrabold leading-tight" style={{ color: "#fdf4e7" }}>
+                <h1 className="text-3xl font-extrabold leading-tight" style={{ color: "#F2F2F2" }}>
                   Kamu adalah
-                  <span className="block text-glow-gold mt-1" style={{ color: "#f0c87a" }}>
+                  <span className="block text-glow-gold mt-1" style={{ color: "#fde68a" }}>
                     Pemenang Beruntung
                   </span>
                 </h1>
@@ -146,10 +145,10 @@ function ResultContent() {
             {/* Code Card */}
             <div
               className="glass-card-strong w-full p-6 flex flex-col gap-5"
-              style={{ borderColor: "rgba(212,168,85,0.2)" }}
+              style={{ borderColor: "rgba(252,211,77,0.2)" }}
             >
               <div className="flex flex-col gap-3 text-center">
-                <p className="text-sm" style={{ color: "#a07850" }}>Kode Pemenang Kamu:</p>
+                <p className="text-sm" style={{ color: "rgba(255,255,255,0.6)" }}>Kode Pemenang Kamu:</p>
                 <div id="winner-code" className="code-display animate-pulse-glow">
                   {code}
                 </div>
@@ -157,12 +156,22 @@ function ResultContent() {
                 <button
                   id="copy-btn"
                   onClick={handleCopy}
-                  className="flex items-center justify-center gap-2 py-3 px-4 rounded-lg text-sm font-medium transition-all duration-200 mx-auto"
                   style={{
-                    background: copied ? "rgba(106,168,79,0.15)" : "rgba(212,168,85,0.1)",
-                    border: copied ? "1px solid rgba(106,168,79,0.4)" : "1px solid rgba(212,168,85,0.35)",
-                    color: copied ? "#6aa84f" : "#f0c87a",
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    gap: "0.5rem",
+                    padding: "0.75rem 1rem",
+                    borderRadius: "0.75rem",
+                    fontSize: "0.875rem",
+                    fontWeight: 500,
+                    background: copied ? "rgba(106,168,79,0.15)" : "rgba(252,211,77,0.1)",
+                    border: copied ? "1px solid rgba(106,168,79,0.4)" : "1px solid rgba(252,211,77,0.35)",
+                    color: copied ? "#6aa84f" : "#fde68a",
+                    cursor: "pointer",
+                    margin: "0 auto",
                     minWidth: "160px",
+                    transition: "all 0.2s",
                   }}
                 >
                   {copied ? (
@@ -175,13 +184,19 @@ function ResultContent() {
 
               {/* Redemption instructions */}
               <div
-                className="rounded-xl p-4 text-sm leading-relaxed"
-                style={{ background: "rgba(255,220,150,0.03)", border: "1px solid rgba(180,120,60,0.1)" }}
+                style={{
+                  borderRadius: "0.75rem",
+                  padding: "1rem",
+                  fontSize: "0.875rem",
+                  lineHeight: 1.6,
+                  background: "rgba(255,255,255,0.04)",
+                  border: "1px solid rgba(255,255,255,0.08)",
+                }}
               >
-                <p className="font-semibold mb-2 flex items-center gap-2" style={{ color: "#fdf4e7" }}>
+                <p style={{ fontWeight: 600, marginBottom: "0.5rem", color: "#F2F2F2", display: "flex", alignItems: "center", gap: "0.5rem" }}>
                   📋 Cara Menukar Hadiah:
                 </p>
-                <ol className="list-decimal list-inside space-y-1.5" style={{ color: "#a07850" }}>
+                <ol style={{ listStyleType: "decimal", paddingLeft: "1.25rem", color: "rgba(255,255,255,0.6)", display: "flex", flexDirection: "column", gap: "0.375rem" }}>
                   <li>Screenshot halaman ini atau catat kode di atas</li>
                   <li>Tunjukkan kode ke panitia / kasir Rakken Coffee</li>
                   <li>Panitia akan memverifikasi kode secara langsung</li>
@@ -189,8 +204,8 @@ function ResultContent() {
                 </ol>
               </div>
 
-              <p className="text-center text-xs" style={{ color: "#7a5c3a" }}>
-                ⚠️ Kode hanya bisa ditukar <strong style={{ color: "#c4956a" }}>satu kali</strong>. Simpan baik-baik!
+              <p className="text-center text-xs" style={{ color: "rgba(255,255,255,0.4)" }}>
+                ⚠️ Kode hanya bisa ditukar <strong style={{ color: "#E6E6E6" }}>satu kali</strong>. Simpan baik-baik!
               </p>
             </div>
 
@@ -199,10 +214,18 @@ function ResultContent() {
               href={redirect ? decodeURIComponent(redirect) : "https://instagram.com/rakkencoffee"}
               target="_blank"
               rel="noopener noreferrer"
-              className="btn-primary text-sm px-6 py-3"
               style={{
+                display: "inline-flex",
+                alignItems: "center",
+                gap: "0.5rem",
+                padding: "0.75rem 1.5rem",
+                borderRadius: "0.75rem",
+                fontSize: "0.875rem",
+                fontWeight: 600,
                 background: "linear-gradient(135deg, #833ab4, #e1306c)",
+                color: "#fff",
                 boxShadow: "0 4px 24px rgba(225,48,108,0.3)",
+                textDecoration: "none",
               }}
             >
               <Instagram size={17} />
@@ -218,34 +241,39 @@ function ResultContent() {
   return (
     <main
       className="relative min-h-screen overflow-hidden flex flex-col items-center justify-center px-4 py-10"
-      style={{ background: "linear-gradient(160deg, #0d0804 0%, #150c06 50%, #0d0804 100%)" }}
+      style={{ background: "linear-gradient(160deg, #8F0D14 0%, #A60F17 50%, #8F0D14 100%)" }}
     >
-      <div className="absolute inset-0 bg-dots opacity-50" />
+      <div className="absolute inset-0 bg-dots opacity-40" />
       <div className="absolute inset-0"
-        style={{ background: "radial-gradient(ellipse 80% 60% at 50% -10%, rgba(140,70,20,0.18) 0%, transparent 70%)" }} />
+        style={{ background: "radial-gradient(ellipse 80% 60% at 50% -10%, rgba(0,0,0,0.2) 0%, transparent 70%)" }} />
 
       <div className="relative z-10 w-full max-w-md flex flex-col items-center gap-8 animate-fade-in-up">
         <div className="flex flex-col items-center gap-4 text-center">
           <div
-            className="flex items-center justify-center w-24 h-24 rounded-2xl"
             style={{
-              background: "linear-gradient(135deg, rgba(140,60,20,0.25), rgba(100,40,10,0.35))",
-              border: "1px solid rgba(140,80,30,0.3)",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              width: "6rem",
+              height: "6rem",
+              borderRadius: "1rem",
+              background: "rgba(0,0,0,0.2)",
+              border: "1px solid rgba(255,255,255,0.15)",
             }}
           >
-            <XCircle size={44} style={{ color: "#c0604a" }} />
+            <XCircle size={44} style={{ color: "rgba(255,255,255,0.5)" }} />
           </div>
 
           <div>
             <p className="text-sm font-semibold tracking-widest uppercase mb-2"
-              style={{ color: "#8b4a20" }}>
+              style={{ color: "rgba(255,255,255,0.5)" }}>
               Belum Beruntung
             </p>
-            <h1 className="text-3xl font-extrabold leading-tight" style={{ color: "#fdf4e7" }}>
+            <h1 className="text-3xl font-extrabold leading-tight" style={{ color: "#F2F2F2" }}>
               Kali ini Belum
-              <span className="block mt-1" style={{ color: "#a07850" }}>Kamu Menang</span>
+              <span className="block mt-1" style={{ color: "rgba(255,255,255,0.6)" }}>Kamu Menang</span>
             </h1>
-            <p className="mt-3 text-sm leading-relaxed max-w-xs mx-auto" style={{ color: "#7a5c3a" }}>
+            <p className="mt-3 text-sm leading-relaxed max-w-xs mx-auto" style={{ color: "rgba(255,255,255,0.45)" }}>
               Jangan sedih! Nikmati kopi kamu dan follow Instagram kami
               untuk info event &amp; giveaway berikutnya.
             </p>
@@ -253,10 +281,10 @@ function ResultContent() {
         </div>
 
         <div className="glass-card-strong w-full p-6 flex flex-col items-center gap-5 text-center">
-          <Coffee size={40} style={{ color: "#c97c2e" }} />
+          <Coffee size={40} style={{ color: "#F2F2F2" }} />
           <div>
-            <p className="font-bold text-lg" style={{ color: "#fdf4e7" }}>Follow @rakkencoffee</p>
-            <p className="text-sm mt-1" style={{ color: "#a07850" }}>
+            <p className="font-bold text-lg" style={{ color: "#F2F2F2" }}>Follow @rakkencoffee</p>
+            <p className="text-sm mt-1" style={{ color: "rgba(255,255,255,0.6)" }}>
               Dapatkan info event, promo, &amp; giveaway kopi terbaru!
             </p>
           </div>
@@ -264,25 +292,43 @@ function ResultContent() {
           <button
             id="instagram-btn"
             onClick={handleInstagramRedirect}
-            className="btn-primary w-full"
             style={{
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              gap: "0.5rem",
+              width: "100%",
+              padding: "1.1rem 1.5rem",
+              borderRadius: "0.75rem",
+              fontSize: "1rem",
+              fontWeight: 700,
               background: "linear-gradient(135deg, #833ab4, #e1306c)",
+              color: "#fff",
               boxShadow: "0 4px 24px rgba(225,48,108,0.3)",
+              border: "none",
+              cursor: "pointer",
             }}
           >
             <Instagram size={18} />
             <span>Follow Sekarang</span>
             {countdown > 0 && (
               <span
-                className="ml-auto text-xs opacity-70 font-normal"
-                style={{ background: "rgba(255,255,255,0.15)", padding: "2px 8px", borderRadius: "99px" }}
+                style={{
+                  marginLeft: "auto",
+                  fontSize: "0.75rem",
+                  opacity: 0.7,
+                  fontWeight: 400,
+                  background: "rgba(255,255,255,0.15)",
+                  padding: "2px 8px",
+                  borderRadius: "99px",
+                }}
               >
                 {countdown}s
               </span>
             )}
           </button>
 
-          <p className="text-xs" style={{ color: "#5a3c20" }}>
+          <p className="text-xs" style={{ color: "rgba(255,255,255,0.3)" }}>
             Akan otomatis redirect dalam {countdown > 0 ? countdown : 0} detik...
           </p>
         </div>
@@ -295,7 +341,7 @@ export default function ResultPage() {
   return (
     <Suspense fallback={
       <div className="min-h-screen flex items-center justify-center"
-        style={{ background: "#0d0804" }}>
+        style={{ background: "#B5121B" }}>
         <div className="spinner" />
       </div>
     }>
