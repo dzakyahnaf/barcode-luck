@@ -137,8 +137,8 @@ export default function HomePage() {
               ☕ Rakken Coffee
             </p>
             <h1 className="text-3xl font-extrabold tracking-tight" style={{ color: "#F2F2F2" }}>
-              Welcome To{" "}
-              <span style={{ color: "#fde68a", textShadow: "0 0 30px rgba(252,211,77,0.4)" }}>
+              Welcome To<br />
+              <span style={{ color: "#fde68a", textShadow: "0 0 30px rgba(252,211,77,0.4)", whiteSpace: "nowrap" }}>
                 Rakken Coffee
               </span>
             </h1>
@@ -229,6 +229,7 @@ export default function HomePage() {
                   color: "#fff",
                   boxShadow: "0 4px 20px rgba(225,48,108,0.3)",
                   textDecoration: "none",
+                  textAlign: "center",
                 }}
               >
                 <Instagram size={20} />
