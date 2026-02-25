@@ -71,8 +71,8 @@ export default function HomePage() {
   };
 
   return (
-    <main className="relative min-h-screen overflow-hidden flex flex-col items-center justify-center px-4 py-10"
-      style={{ background: "linear-gradient(180deg, #6b0a10 0%, #8F0D14 35%, #B5121B 60%, #cc1a24 100%)" }}>
+    <main className="relative min-h-screen overflow-hidden flex flex-col items-center justify-center"
+      style={{ background: "linear-gradient(180deg, #6b0a10 0%, #8F0D14 35%, #B5121B 60%, #cc1a24 100%)", padding: "3.5rem 1.5rem" }}>
 
       {/* Background layers */}
       <div className="absolute inset-0 bg-dots opacity-40" />
@@ -89,10 +89,11 @@ export default function HomePage() {
         style={{ background: "radial-gradient(circle, rgba(181,18,27,0.35), transparent)" }} />
 
       {/* Content */}
-      <div className="relative z-10 w-full max-w-md flex flex-col items-center gap-8 animate-fade-in-up">
+      <div className="relative z-10 w-full flex flex-col items-center gap-10 animate-fade-in-up"
+        style={{ maxWidth: "420px", padding: "0 0.5rem" }}>
 
         {/* Logo / Hero */}
-        <div className="flex flex-col items-center gap-4 text-center">
+        <div className="flex flex-col items-center gap-5 text-center">
           {/* Coffee cup with steam */}
           <div className="relative">
             <div
@@ -149,7 +150,8 @@ export default function HomePage() {
         </div>
 
         {/* Card */}
-        <div className="glass-card-strong w-full p-6 flex flex-col gap-5">
+        <div className="glass-card-strong flex flex-col gap-6"
+          style={{ width: "calc(100% - 1rem)", padding: "1.75rem", margin: "0 auto" }}>
           {alreadyPlayed ? (
             <AlreadyPlayedState />
           ) : (
