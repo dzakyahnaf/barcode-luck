@@ -1,9 +1,8 @@
 "use client";
 
-import { useState, useEffect, useRef } from "react";
-import { Smartphone, Sparkles, Coffee, ShieldCheck, ChevronRight, Instagram } from "lucide-react";
-
-const STORAGE_KEY = "qr_campaign_played";
+import { useState, useRef } from "react";
+import { Smartphone, ChevronRight, Instagram } from "lucide-react";
+import Image from "next/image";
 
 interface SpinResult {
   won: boolean;
@@ -19,7 +18,6 @@ export default function HomePage() {
   const [error, setError] = useState("");
   const [alreadyPlayed, setAlreadyPlayed] = useState(false);
   const inputRef = useRef<HTMLInputElement>(null);
-
 
   const validatePhone = (p: string) => {
     const cleaned = p.replace(/\D/g, "");
@@ -53,7 +51,6 @@ export default function HomePage() {
         return;
       }
 
-
       if (data.won && data.code) {
         window.location.href = `/result?won=true&code=${data.code}`;
       } else {
@@ -71,99 +68,135 @@ export default function HomePage() {
   };
 
   return (
-    <main className="relative min-h-screen overflow-hidden flex flex-col items-center justify-center"
-      style={{ background: "linear-gradient(180deg, #6b0a10 0%, #8F0D14 35%, #B5121B 60%, #cc1a24 100%)", padding: "3.5rem 1.5rem" }}>
+    <main
+      className="relative min-h-screen overflow-hidden flex flex-col items-center justify-center"
+      style={{
+        background: "linear-gradient(180deg, #7a0e15 0%, #A8131E 40%, #B5161F 70%, #c41d28 100%)",
+        padding: "3rem 1.5rem",
+      }}
+    >
+      {/* Background texture */}
+      <div className="absolute inset-0 bg-dots opacity-30" />
 
-      {/* Background layers */}
-      <div className="absolute inset-0 bg-dots opacity-40" />
-      <div className="absolute inset-0 bg-radial-red" />
+      {/* Subtle vignette */}
+      <div className="absolute inset-0" style={{
+        background: "radial-gradient(ellipse at center, transparent 50%, rgba(0,0,0,0.25) 100%)",
+      }} />
 
-      {/* Decorative blobs */}
-      <div className="absolute top-0 left-0 w-full h-60"
-        style={{ background: "linear-gradient(180deg, rgba(0,0,0,0.3), transparent)" }} />
-      <div className="absolute bottom-0 left-0 w-full h-60"
-        style={{ background: "linear-gradient(0deg, rgba(0,0,0,0.2), transparent)" }} />
-      <div className="absolute top-1/3 -left-32 w-80 h-80 rounded-full blur-3xl"
-        style={{ background: "radial-gradient(circle, rgba(204,26,36,0.4), transparent)" }} />
-      <div className="absolute bottom-1/4 -right-32 w-96 h-96 rounded-full blur-3xl"
-        style={{ background: "radial-gradient(circle, rgba(181,18,27,0.35), transparent)" }} />
+      {/* Decorative light blobs */}
+      <div className="absolute top-1/4 -left-20 w-72 h-72 rounded-full blur-3xl"
+        style={{ background: "radial-gradient(circle, rgba(200,30,40,0.35), transparent)" }} />
+      <div className="absolute bottom-1/4 -right-20 w-80 h-80 rounded-full blur-3xl"
+        style={{ background: "radial-gradient(circle, rgba(168,19,30,0.3), transparent)" }} />
 
       {/* Content */}
-      <div className="relative z-10 w-full flex flex-col items-center gap-10 animate-fade-in-up"
-        style={{ maxWidth: "420px", padding: "0 0.5rem" }}>
+      <div
+        className="relative z-10 w-full flex flex-col items-center animate-fade-in-up"
+        style={{ maxWidth: "400px" }}
+      >
 
-        {/* Logo / Hero */}
-        <div className="flex flex-col items-center gap-5 text-center">
-          {/* Coffee cup with steam */}
-          <div className="relative">
-            <div
-              className="relative flex items-center justify-center w-24 h-24 rounded-2xl animate-float"
-              style={{
-                background: "rgba(0,0,0,0.2)",
-                border: "1px solid rgba(255,255,255,0.2)",
-                boxShadow: "0 0 40px rgba(0,0,0,0.2)",
-              }}
-            >
-              <Coffee size={44} style={{ color: "#F2F2F2" }} />
-            </div>
-            {/* Steam wisps */}
-            <div className="absolute -top-5 left-8 flex gap-2">
-              {[0, 0.4, 0.8].map((delay, i) => (
-                <div
-                  key={i}
-                  className="w-1 h-5 rounded-full animate-steam opacity-0"
-                  style={{
-                    background: "rgba(255, 255, 255, 0.35)",
-                    animationDelay: `${delay}s`,
-                    filter: "blur(1px)",
-                  }}
-                />
-              ))}
-            </div>
-            {/* Sparkle badge */}
-            <span className="absolute -top-2 -right-2 flex h-5 w-5">
-              <span className="animate-ping absolute inline-flex h-full w-full rounded-full opacity-75"
-                style={{ background: "rgba(252, 211, 77, 0.7)" }} />
-              <span className="relative inline-flex rounded-full h-5 w-5 items-center justify-center"
-                style={{ background: "#fcd34d" }}>
-                <Sparkles size={11} style={{ color: "#8F0D14" }} />
-              </span>
-            </span>
-          </div>
-
-          <div className="text-center">
-            <p className="text-xs font-semibold tracking-[0.25em] uppercase mb-2"
-              style={{ color: "rgba(255,255,255,0.6)" }}>
-              ☕ Rakken Coffee
-            </p>
-            <h1 className="text-3xl font-extrabold tracking-tight" style={{ color: "#F2F2F2" }}>
-              Welcome To<br />
-              <span style={{ color: "#fde68a", textShadow: "0 0 30px rgba(252,211,77,0.4)", whiteSpace: "nowrap" }}>
-                Rakken Coffee
-              </span>
-            </h1>
-            <p className="mt-2 text-sm leading-relaxed" style={{ color: "rgba(255,255,255,0.65)" }}>
-              Masukkan nomor WhatsApp kamu dan coba keberuntunganmu.
-              Siapa tahu kamu pulang dengan hadiah spesial dari kami! ☕
-            </p>
-          </div>
+        {/* ===== LOGO ===== */}
+        <div style={{ marginBottom: "1.75rem" }}>
+          <Image
+            src="/images/logo-rakken.png"
+            alt="Rakken Coffee"
+            width={340}
+            height={340}
+            priority
+            style={{ objectFit: "contain" }}
+          />
         </div>
 
-        {/* Card */}
-        <div className="glass-card-strong flex flex-col gap-6"
-          style={{ width: "calc(100% - 1rem)", padding: "1.75rem", margin: "0 auto" }}>
+        {/* ===== TAGLINE ===== */}
+        <div style={{ textAlign: "center", marginBottom: "2rem" }}>
+          <p style={{
+            color: "#F2F2F2",
+            fontSize: "1.1rem",
+            fontWeight: 700,
+            lineHeight: 1.4,
+            marginBottom: "0.25rem",
+          }}>
+            Your New Everyday Ritual
+          </p>
+          <p style={{
+            color: "rgba(255,255,255,0.7)",
+            fontSize: "0.95rem",
+            fontWeight: 400,
+          }}>
+            For Everyday Sips and Bites.
+          </p>
+        </div>
+
+        {/* ===== HEADLINE ===== */}
+        <h1 style={{
+          color: "#FFFFFF",
+          fontSize: "1.75rem",
+          fontWeight: 800,
+          textAlign: "center",
+          lineHeight: 1.2,
+          marginBottom: "1.5rem",
+          textShadow: "0 2px 12px rgba(0,0,0,0.25)",
+        }}>
+          Follow &amp; Menangkan<br />
+          <span style={{ color: "#fde68a", textShadow: "0 0 20px rgba(252,211,77,0.4)" }}>
+            Hadiah Emas!
+          </span>
+        </h1>
+
+        {/* ===== RULES ===== */}
+        <div style={{
+          background: "rgba(0,0,0,0.15)",
+          border: "1px solid rgba(255,255,255,0.12)",
+          borderRadius: "0.875rem",
+          padding: "1.25rem 1.5rem",
+          width: "100%",
+          marginBottom: "1.5rem",
+        }}>
+          <p style={{ color: "#F2F2F2", fontWeight: 700, fontSize: "0.9rem", marginBottom: "0.75rem" }}>
+            Rules:
+          </p>
+          <ol style={{
+            color: "rgba(255,255,255,0.75)",
+            fontSize: "0.875rem",
+            lineHeight: 1.7,
+            paddingLeft: "1.25rem",
+            listStyleType: "decimal",
+            margin: 0,
+          }}>
+            <li>Follow <strong style={{ color: "#F2F2F2" }}>@rakkencoffee</strong> and win gold.</li>
+            <li>Enter your phone number below to participate.</li>
+          </ol>
+        </div>
+
+        {/* ===== FORM CARD ===== */}
+        <div
+          className="glass-card-strong flex flex-col"
+          style={{
+            width: "100%",
+            padding: "1.5rem",
+            marginBottom: "1.5rem",
+            gap: "1.25rem",
+          }}
+        >
           {alreadyPlayed ? (
             <AlreadyPlayedState />
           ) : (
             <>
-              <div className="flex flex-col gap-2">
+              {/* Phone input */}
+              <div style={{ display: "flex", flexDirection: "column", gap: "0.5rem" }}>
                 <label
                   htmlFor="phone-input"
-                  className="text-sm font-medium flex items-center gap-2"
-                  style={{ color: "rgba(255,255,255,0.7)" }}
+                  style={{
+                    color: "rgba(255,255,255,0.75)",
+                    fontSize: "0.875rem",
+                    fontWeight: 500,
+                    display: "flex",
+                    alignItems: "center",
+                    gap: "0.5rem",
+                  }}
                 >
                   <Smartphone size={15} style={{ color: "#F2F2F2" }} />
-                  Nomor WhatsApp
+                  Phone Number
                 </label>
                 <input
                   ref={inputRef}
@@ -171,7 +204,7 @@ export default function HomePage() {
                   type="tel"
                   inputMode="numeric"
                   className="input-field"
-                  placeholder="Contoh: 081234567890"
+                  placeholder="Enter your phone number"
                   value={phone}
                   onChange={(e) => {
                     setPhone(e.target.value);
@@ -184,27 +217,43 @@ export default function HomePage() {
                   autoFocus
                 />
                 {error && (
-                  <p className="text-xs animate-fade-in flex items-center gap-1" style={{ color: "#fca5a5" }}>
+                  <p style={{ color: "#fca5a5", fontSize: "0.75rem", display: "flex", alignItems: "center", gap: "0.25rem" }}>
                     <span>⚠</span> {error}
                   </p>
                 )}
               </div>
 
+              {/* Submit */}
               <button
                 id="spin-btn"
-                className="btn-primary w-full text-base"
                 onClick={handleSpin}
                 disabled={isLoading || !phone.trim()}
+                style={{
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  gap: "0.5rem",
+                  width: "100%",
+                  padding: "1rem 1.5rem",
+                  borderRadius: "0.75rem",
+                  fontSize: "1rem",
+                  fontWeight: 700,
+                  background: isLoading ? "rgba(255,255,255,0.1)" : "rgba(255,255,255,0.15)",
+                  color: "#F2F2F2",
+                  border: "1px solid rgba(255,255,255,0.2)",
+                  cursor: isLoading ? "not-allowed" : "pointer",
+                  opacity: (!phone.trim() || isLoading) ? 0.5 : 1,
+                  transition: "all 0.2s",
+                }}
               >
                 {isLoading ? (
                   <>
-                    <div className="spinner w-5! h-5! border-2!" />
-                    <span>Memproses...</span>
+                    <div className="spinner" style={{ width: "1.25rem", height: "1.25rem", borderWidth: "2px" }} />
+                    <span>Processing...</span>
                   </>
                 ) : (
                   <>
-                    <Coffee size={18} />
-                    <span>Coba Keberuntunganmu!</span>
+                    <span>Join Now</span>
                     <ChevronRight size={18} />
                   </>
                 )}
@@ -221,7 +270,7 @@ export default function HomePage() {
                   justifyContent: "center",
                   gap: "0.625rem",
                   width: "100%",
-                  padding: "1.1rem 1.5rem",
+                  padding: "1rem 1.5rem",
                   borderRadius: "0.75rem",
                   fontSize: "1rem",
                   fontWeight: 700,
@@ -239,16 +288,30 @@ export default function HomePage() {
           )}
         </div>
 
-        {/* Trust badges */}
-        <div className="flex items-center gap-3 text-xs" style={{ color: "rgba(255,255,255,0.4)" }}>
-          <ShieldCheck size={14} style={{ color: "rgba(255,255,255,0.5)" }} />
-          <span>Data kamu aman &amp; tidak disimpan secara publik</span>
-        </div>
-
-        {/* Footer note */}
-        <p className="text-xs text-center" style={{ color: "rgba(255,255,255,0.3)" }}>
-          Scan QR Code di banner untuk berpartisipasi. Satu nomor, satu kesempatan.
+        {/* ===== WINNER ANNOUNCEMENT ===== */}
+        <p style={{
+          color: "#fde68a",
+          fontSize: "0.85rem",
+          fontWeight: 600,
+          textAlign: "center",
+          marginBottom: "0.75rem",
+          textShadow: "0 0 15px rgba(252,211,77,0.3)",
+        }}>
+          🏆 The winner will be announced on Instagram 1 April 2026
         </p>
+
+        {/* ===== BE PART OF IT ===== */}
+        <p style={{
+          color: "rgba(255,255,255,0.5)",
+          fontSize: "0.8rem",
+          fontWeight: 500,
+          textAlign: "center",
+          letterSpacing: "0.1em",
+          textTransform: "uppercase",
+        }}>
+          Be part of it
+        </p>
+
       </div>
     </main>
   );
@@ -256,33 +319,56 @@ export default function HomePage() {
 
 function AlreadyPlayedState() {
   return (
-    <div className="flex flex-col items-center gap-4 py-4 text-center animate-fade-in">
-      <div
-        className="w-16 h-16 rounded-2xl flex items-center justify-center text-3xl"
-        style={{ background: "rgba(255,255,255,0.08)", border: "1px solid rgba(255,255,255,0.15)" }}
-      >
+    <div style={{
+      display: "flex",
+      flexDirection: "column",
+      alignItems: "center",
+      gap: "1rem",
+      padding: "1rem 0",
+      textAlign: "center",
+    }}>
+      <div style={{
+        width: "4rem",
+        height: "4rem",
+        borderRadius: "1rem",
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+        fontSize: "1.875rem",
+        background: "rgba(255,255,255,0.08)",
+        border: "1px solid rgba(255,255,255,0.15)",
+      }}>
         ⏰
       </div>
       <div>
-        <h2 className="text-lg font-bold" style={{ color: "#F2F2F2" }}>Sudah Dimainkan</h2>
-        <p className="text-sm mt-1 leading-relaxed" style={{ color: "rgba(255,255,255,0.6)" }}>
-          Nomor ini sudah pernah mengikuti undian.
-          <br />
-          Satu nomor hanya bisa bermain{" "}
-          <strong style={{ color: "#F2F2F2" }}>satu kali</strong>.
+        <h2 style={{ color: "#F2F2F2", fontSize: "1.125rem", fontWeight: 700 }}>
+          Already Participated
+        </h2>
+        <p style={{ color: "rgba(255,255,255,0.6)", fontSize: "0.875rem", marginTop: "0.25rem", lineHeight: 1.5 }}>
+          This number has already entered the draw.<br />
+          One number, <strong style={{ color: "#F2F2F2" }}>one chance</strong>.
         </p>
       </div>
       <a
         href="https://instagram.com/rakkencoffee"
         target="_blank"
         rel="noopener noreferrer"
-        className="btn-primary text-sm px-6 py-3"
         style={{
+          display: "inline-flex",
+          alignItems: "center",
+          gap: "0.5rem",
+          padding: "0.75rem 1.5rem",
+          borderRadius: "0.75rem",
+          fontSize: "0.875rem",
+          fontWeight: 600,
           background: "linear-gradient(135deg, #833ab4, #e1306c)",
+          color: "#fff",
           boxShadow: "0 4px 24px rgba(225,48,108,0.3)",
+          textDecoration: "none",
         }}
       >
-        <span>Follow Instagram Kami</span>
+        <Instagram size={16} />
+        <span>Follow @rakkencoffee</span>
       </a>
     </div>
   );

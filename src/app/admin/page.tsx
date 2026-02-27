@@ -146,7 +146,7 @@ export default function AdminPage() {
   if (!authenticated) {
     return (
       <main className="relative min-h-screen flex items-center justify-center px-4"
-        style={{ background: "linear-gradient(160deg, #8F0D14 0%, #B5121B 50%, #A60F17 100%)" }}>
+        style={{ background: "linear-gradient(160deg, #7a0e15 0%, #A8131E 50%, #8a1018 100%)" }}>
         <div className="absolute inset-0 bg-dots opacity-40" />
         <div className="absolute inset-0 bg-radial-purple" />
         <div className="relative z-10 w-full max-w-sm animate-fade-in-up">
@@ -207,7 +207,7 @@ export default function AdminPage() {
 
   return (
     <main className="relative min-h-screen px-4 py-8"
-      style={{ background: "linear-gradient(160deg, #8F0D14 0%, #B5121B 50%, #A60F17 100%)" }}>
+      style={{ background: "linear-gradient(160deg, #7a0e15 0%, #A8131E 50%, #8a1018 100%)" }}>
       <div className="absolute inset-0 bg-dots opacity-30" />
       <div className="absolute inset-0 bg-radial-coffee opacity-60" />
 

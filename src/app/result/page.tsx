@@ -103,7 +103,7 @@ function ResultContent() {
         <ConfettiEffect />
         <main
           className="relative min-h-screen overflow-hidden flex flex-col items-center justify-center px-4 py-10"
-          style={{ background: "linear-gradient(160deg, #8F0D14 0%, #B5121B 50%, #A60F17 100%)" }}
+          style={{ background: "linear-gradient(160deg, #7a0e15 0%, #A8131E 50%, #8a1018 100%)" }}
         >
           <div className="absolute inset-0 bg-dots opacity-40" />
           <div className="absolute inset-0 bg-radial-gold" />
@@ -241,7 +241,7 @@ function ResultContent() {
   return (
     <main
       className="relative min-h-screen overflow-hidden flex flex-col items-center justify-center px-4 py-10"
-      style={{ background: "linear-gradient(160deg, #8F0D14 0%, #A60F17 50%, #8F0D14 100%)" }}
+      style={{ background: "linear-gradient(160deg, #7a0e15 0%, #8a1018 50%, #7a0e15 100%)" }}
     >
       <div className="absolute inset-0 bg-dots opacity-40" />
       <div className="absolute inset-0"
@@ -341,7 +341,7 @@ export default function ResultPage() {
   return (
     <Suspense fallback={
       <div className="min-h-screen flex items-center justify-center"
-        style={{ background: "#B5121B" }}>
+        style={{ background: "#A8131E" }}>
         <div className="spinner" />
       </div>
     }>

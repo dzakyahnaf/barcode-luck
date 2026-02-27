@@ -2,8 +2,8 @@
 @import "tailwindcss";
 
 :root {
-  --bg-primary: #8F0D14;
-  --bg-secondary: #A60F17;
+  --bg-primary: #A8131E;
+  --bg-secondary: #8a1018;
   --bg-card: rgba(0, 0, 0, 0.25);
   --border: rgba(255, 255, 255, 0.12);
   --border-glow: rgba(255, 255, 255, 0.3);
@@ -17,7 +17,7 @@
   --gold-light: #fde68a;
   --gold-glow: rgba(252, 211, 77, 0.2);
   --green: #6aa84f;
-  --red-dark: #8F0D14;
+  --red-dark: #A8131E;
 }
 
 * {
@@ -43,7 +43,7 @@ body {
 .bg-radial-red {
   background: radial-gradient(
     ellipse 80% 60% at 50% -10%,
-    rgba(181, 18, 27, 0.5) 0%,
+    rgba(168, 19, 30, 0.5) 0%,
     transparent 70%
   );
 }
@@ -51,7 +51,7 @@ body {
 .bg-radial-coffee {
   background: radial-gradient(
     ellipse 80% 60% at 50% -10%,
-    rgba(181, 18, 27, 0.5) 0%,
+    rgba(168, 19, 30, 0.5) 0%,
     transparent 70%
   );
 }
@@ -59,7 +59,7 @@ body {
 .bg-radial-purple {
   background: radial-gradient(
     ellipse 80% 60% at 50% -10%,
-    rgba(181, 18, 27, 0.5) 0%,
+    rgba(168, 19, 30, 0.5) 0%,
     transparent 70%
   );
 }
