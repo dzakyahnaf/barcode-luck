@@ -1,5 +1,16 @@
-@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;700&display=swap");
 @import "tailwindcss";
+
+/* ===== Campton Font Family ===== */
+@font-face { font-family: "Campton"; src: url("/fonts/campton/CamptonLight.otf") format("opentype"); font-weight: 300; font-style: normal; font-display: swap; }
+@font-face { font-family: "Campton"; src: url("/fonts/campton/CamptonBook.otf") format("opentype"); font-weight: 400; font-style: normal; font-display: swap; }
+@font-face { font-family: "Campton"; src: url("/fonts/campton/CamptonMedium.otf") format("opentype"); font-weight: 500; font-style: normal; font-display: swap; }
+@font-face { font-family: "Campton"; src: url("/fonts/campton/CamptonSemiBold.otf") format("opentype"); font-weight: 600; font-style: normal; font-display: swap; }
+@font-face { font-family: "Campton"; src: url("/fonts/campton/CamptonBold.otf") format("opentype"); font-weight: 700; font-style: normal; font-display: swap; }
+@font-face { font-family: "Campton"; src: url("/fonts/campton/CamptonExtraBold.otf") format("opentype"); font-weight: 800; font-style: normal; font-display: swap; }
+@font-face { font-family: "Campton"; src: url("/fonts/campton/CamptonBlack.otf") format("opentype"); font-weight: 900; font-style: normal; font-display: swap; }
+
+/* ===== Pottred Font (Display) ===== */
+@font-face { font-family: "Pottred"; src: url("/fonts/pottred/Pottred.ttf") format("truetype"); font-weight: 400; font-style: normal; font-display: swap; }
 
 :root {
   --bg-primary: #A8131E;
@@ -31,12 +42,16 @@ html {
 }
 
 body {
-  font-family: "Inter", system-ui, sans-serif;
+  font-family: "Campton", system-ui, sans-serif;
   background-color: var(--bg-primary);
   color: var(--text-primary);
   min-height: 100vh;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+.font-pottred {
+  font-family: "Pottred", serif;
 }
 
 /* ===================== GRADIENTS & GLOWS ===================== */

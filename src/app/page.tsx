@@ -125,23 +125,7 @@ export default function HomePage() {
           }}>
             For Everyday Sips and Bites.
           </p>
-        </div>
-
-        {/* ===== HEADLINE ===== */}
-        <h1 style={{
-          color: "#FFFFFF",
-          fontSize: "1.75rem",
-          fontWeight: 800,
-          textAlign: "center",
-          lineHeight: 1.2,
-          marginBottom: "1.5rem",
-          textShadow: "0 2px 12px rgba(0,0,0,0.25)",
-        }}>
-          Follow &amp; Menangkan<br />
-          <span style={{ color: "#fde68a", textShadow: "0 0 20px rgba(252,211,77,0.4)" }}>
-            Hadiah Emas!
-          </span>
-        </h1>
+        </div>        
 
         {/* ===== RULES ===== */}
         <div style={{
