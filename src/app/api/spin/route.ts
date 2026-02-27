@@ -50,13 +50,14 @@ export async function POST(req: NextRequest) {
     // --- Run RNG ---
     const winRate = Number(process.env.WIN_RATE_PERCENT ?? 5);
 
-    // ⚠️ TESTING MODE: Orang ke-3 pasti menang. Hapus blok ini setelah testing!
-    const { count: currentCount } = await supabase
-      .from("scan_entries")
-      .select("*", { count: "exact", head: true });
-    const nextScanNumber = (currentCount ?? 0) + 1;
-    const won = nextScanNumber % 3 === 0 ? true : runRNG(winRate);
+    
+    // const { count: currentCount } = await supabase
+    //   .from("scan_entries")
+    //   .select("*", { count: "exact", head: true });
+    // const nextScanNumber = (currentCount ?? 0) + 1;
+    // const won = nextScanNumber % 3 === 0 ? true : runRNG(winRate);
     // ⚠️ END TESTING MODE
+    const won = runRNG(winRate);
 
     // --- Insert scan entry ---
     const { data: entry, error: entryError } = await supabase
